@@ -58,7 +58,7 @@
 					<view class="second-line">
 						（上午）09：00-11：00
 					</view>
-					</view>
+				</view>
 			</view>
 			
 			<view class="end-content-seat" v-if="type == 2">
