@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "",
-  "usingComponents": {
-    "time-picker-popup": "/components/time-picker-popup/time-picker-popup",
-    "xs-form": "/components/form/xs-form",
-    "xs-form-item": "/components/form/xs-form-item"
-  }
-}

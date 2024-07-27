@@ -23,7 +23,7 @@
 		<view class="title">选择时间段</view>
 			<view class="">
 				<view class="" @click="open">
-					2222
+					{{formData.start1}}-{{formData.end1}}444
 				</view>
 			</view>
 		<view class="tips">预约要求：请开车，带上安全座椅，带上孩子。</view>
@@ -46,6 +46,10 @@ export default {
 			formData: {
 				date: '',
 				weight: '',
+				start1: '',
+				end1:'',
+				start2:'',
+				end2: ''
 			},
 			value: ['00', '00', '00', '00']
 		}
@@ -60,9 +64,8 @@ export default {
 			this.formData.date = value.detail.value
 		},
 		confirm(data) {
-			uni.showToast({
-				title: `${data[0]}:${data[1]}-${data[2]}:${data[3]}`
-			})
+			this.formData.start1 = `data[0] + data[1]
+			this.formData.end1 = data[2] + data[3]
 		},
 		open() {
 			this.$refs.TimePickerPopupRef.open();

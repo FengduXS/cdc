@@ -136,6 +136,7 @@
 					if (this.pickerValue && this.pickerValue.length) {
 						data = this.pickerValue.map((item, index) => String(this.rangeList[index][item]));
 					}
+					console.log(data)
 					this.$emit('confirm', data);
 					this.close();
 				}
