@@ -4,11 +4,52 @@
 		<span class="title">欢迎进入</span>
 		<span class="title">普陀区公共卫生科普中心线上展厅</span>
 		<img src="/static/exhibitionLogo.png" alt="" class="logo"/>
-		<div class="login">登录</div>
+		<div class="login" @click="login">登录</div>
 	</view>
 </template>
 
 <script>
+	import { post } from '../../utils/request.js'
+	export default {
+	  data() {
+	    return {
+	      openId: null,
+	      userInfo: null
+	    };
+	  },
+	  methods: {
+	   getUserInfo () {
+		  wx.getUserInfo({
+			success: (res) => {
+				this.userInfo = res.userInfo
+			}
+		  });
+		},
+	    login() {
+	      wx.login({
+	        success: (res) => {
+	          if (res.code) {
+	            this.fetchAccessTokenAndOpenid(res.code);
+	          } else {
+	            console.log('登录失败！' + res.errMsg);
+	          }
+	        }
+	      });
+	    },
+	    fetchAccessTokenAndOpenid(code) {
+	       post('/getOpenid', { code: code })
+	        .then(response => {
+	          this.openId = response.data.openId;
+			  wx.setStorageSync('openId', this.openId);
+			  uni.navigateTo({url: '/pages/home/home'})
+	        })
+	        .catch(error => {
+	          console.error('获取openId失败', error);
+	        });
+	    }
+	  }
+	};
+
 </script>
 
 <style lang="scss" scoped>

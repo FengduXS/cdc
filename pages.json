@@ -1,13 +1,13 @@
 {
 	"pages": [
 		{
-			"path": "pages/home/home",
+			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
 		},
 		{
-			"path": "pages/login/login",
+			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
@@ -56,6 +56,13 @@
 		},
 		{
 			"path" : "pages/seat/seat",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/exhibition/exhibition",
 			"style" : 
 			{
 				"navigationBarTitleText" : ""

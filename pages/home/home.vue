@@ -1,18 +1,18 @@
 <template>
 	<view class="content">
-		<div class="item" @click="jump(1)">
+		<div class="item" @click="navigateTo3DExhibitionHall()">
 			<img src="/static/1.png" alt="" />
 			<span>3D线上展厅</span>
 		</div>
-		<div class="item" @click="jump(2)">
+		<div class="item" @click="bookExhibitionHall()">
 			<img src="/static/2.png" alt="" />
 			<span>预约展馆</span>
 		</div>
-		<div class="item" @click="jump(3)">
+		<div class="item" @click="reserveSeat()">
 			<img src="/static/3.png" alt="" />
 			<span>预约座椅</span>
 		</div>
-		<div class="item" @click="jump(4)">
+		<div class="item" @click="answerQuizForPrize()">
 			<img src="/static/4.png" alt="" />
 			<span>答题领奖</span>
 		</div>
@@ -30,15 +30,18 @@ export default {
 
 	},
 	methods: {
-		jump(data){
-			let pageMap = {
-				1: '/pages/exhibition/exhibition',
-				2: '/pages/reserveShowroom/reserveShowroom',
-				3: '/pages/reserveSeat/reserveSeat',
-				4: '/pages/question/question'
-			}
-			uni.navigateTo({url: pageMap[data]})
-		}
+		navigateTo3DExhibitionHall() {
+			uni.navigateTo({url: '/pages/exhibition/exhibition'})
+		},
+		bookExhibitionHall() {
+			uni.navigateTo({url: '/pages/reserveShowroom/reserveShowroom'})
+		},
+		reserveSeat() {
+			uni.navigateTo({url: '/pages/reserveSeat/reserveSeat'})
+		},
+		answerQuizForPrize() {
+			uni.navigateTo({url: '/pages/question/question'})
+		},
 	}
 }
 </script>
