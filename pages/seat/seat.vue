@@ -24,7 +24,7 @@
 			<radio-group @change="radioChange">
 				<label v-for="(item, index) in value" :key="item.value" class="radio">
 					<view>
-						<radio :value="item.value" :checked="index === current" />
+						<radio :value="item.value"/>
 					</view>
 					<view>{{item.name}}</view>
 				</label>
