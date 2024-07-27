@@ -75,7 +75,7 @@ export default {
 			
 		},
 		policyClick(){
-			console.log(111)
+			uni.navigateTo({url: '/pages/privacyPolicy/privacyPolicy'})
 		},
 		checkboxChange(value) {
 			if (value.detail.value.length > 0){

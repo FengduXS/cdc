@@ -135,9 +135,7 @@ export default {
 			  });
 		},
 		policyClick(){
-			wx.navigateTo({
-				url: '/pages/privacy-policy/privacy-policy' // 跳转到隐私政策页面
-			});
+			uni.navigateTo({url: '/pages/privacyPolicy/privacyPolicy'})
 		},
 		checkboxChange(value) {
 			if (value.detail.value.length > 0){
