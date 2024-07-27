@@ -33,7 +33,7 @@ export default {
 		jump(data){
 			let pageMap = {
 				1: '/pages/exhibitionBooking/exhibitionBooking',
-				2: '/pages/myOrder/myOrder',
+				2: '/pages/myOrder/myOrder?type=1',
 				3: '/pages/reserveSeat/reserveSeat'
 			}
 			uni.navigateTo({url: pageMap[data]})
