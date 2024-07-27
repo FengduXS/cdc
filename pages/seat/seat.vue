@@ -82,16 +82,14 @@ export default {
 			this.formData.birthday = value.detail.value
 		},
 		submit(){
-			const openId = 
-			post('/reserve/seat',{
-				
-			})
+			const openId = wx.getStorageSync('openId') ?? '';
+			const params = {
+				openId,
+				data:this.formData
+			}
+			post('/reserve/seat',params)
 			  .then(res => {
-								if(res.data && res.data.length){
-									this.question = res.data.map(item=> {
-										return {...item, answer:''}
-									})
-								}
+				  console.log(res)
 			  })
 			  .catch(error => {
 			    console.error('API请求失败:', error);
