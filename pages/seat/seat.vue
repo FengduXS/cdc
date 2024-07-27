@@ -16,8 +16,10 @@
 			</xs-form-item>
 			<xs-form-item title="联系人" name="realName" type="input" required placeholder="请输入联系人"></xs-form-item>
 			<xs-form-item title="联系电话" name="phone" type="input" required placeholder="请输入手机号"></xs-form-item>
-			<xs-form-item title="预约时间 (请提前两天预约)" name="reserveDate" required>
-			</xs-form-item>
+			<xs-form-item title="预约时间 (请提前两天预约)" name="reserveDate" required></xs-form-item>
+			<picker mode="date" :value="date" @change="dateChange1">
+				<view class="uni-input">{{formData.date}}2222</view>
+			</picker>
 		</xs-form>
 		<view class="title">选择时间段</view>
 		<view class="stage-content">
@@ -53,6 +55,7 @@ export default {
 				phone: '', // 联系电话
 				reserveDate:'', // 预约日期
 				reserveTime: '09:00-11:00', // 预约时间
+				date:''
 			},
 			value: [
 				{
@@ -82,6 +85,9 @@ export default {
 		},
 		dateChange(value) {
 			this.formData.birthday = value.detail.value
+		},
+		dateChange1(value) {
+			this.formData.date = value.detail.value
 		},
 		radioChange() {
 			
