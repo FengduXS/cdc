@@ -1,18 +1,21 @@
 <template>
 	<view class="exhibitionBooking">
-		<xs-form v-model="ssss" ref="form">
+		<xs-form v-model="formData" ref="form">
 			<xs-form-item title="称呼" name="weight" required type="input"></xs-form-item>
 			<xs-form-item title="单位名称" name="aaa" type="input" placeholder="请输入先生或女士"></xs-form-item>
 			<xs-form-item title="手机号码" name="bbb" type="input" required placeholder="请输入您的手机号"></xs-form-item>
 			<xs-form-item title="人数" name="bbc" type="input" required placeholder="请输入您的手机号"></xs-form-item>
 			<xs-form-item title="预约时间(请提前两天预约)" name="sdd" required></xs-form-item>
+			<picker mode="date" :value="date" @change="dateChange" :start="startDate" :end="endDate">
+				<view class="uni-input">{{formData.date}}2222</view>
+			</picker>
 		</xs-form>
 		<view class="title">选择时间段</view>
 		<view class="stage-content">
 			<radio-group @change="radioChange">
 				<label v-for="(item, index) in value" :key="item.value" class="radio">
 					<view>
-						<radio :value="item.value" :checked="index === current" />
+						<radio :value="item.value"/>
 					</view>
 					<view>{{item.name}}</view>
 				</label>
@@ -32,12 +35,13 @@ export default {
 	},
 	data() {
 		return {
-			ssss: {
+			formData: {
 				weight: '',
 				aaa: '',
 				bbb:'',
 				bbc: '',
-				sdd: ''
+				sdd: '',
+				date: ''
 			},
 			value: [
 				{
@@ -48,12 +52,14 @@ export default {
 					value: 'JPN',
 					name: '14:00 - 16:00'
 				},
-			]
+			],
+			startDate: '2024-07-09',
+			endDate: '2099-07-09'
 		}
 	},
 	methods: {
 		dateChange(value) {
-			this.ssss.date = value.detail.value
+			this.formData.date = value.detail.value
 		},
 		radioChange() {
 			
