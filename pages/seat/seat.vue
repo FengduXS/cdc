@@ -85,7 +85,7 @@ export default {
 		},
 		radioChange() {
 			
-		}
+		},
 		submit(){
 			const openId = wx.getStorageSync('openId') ?? '';
 			const params = {
