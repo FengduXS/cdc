@@ -20,31 +20,29 @@
 			</xs-form-item>
 		</xs-form>
 		<view class="title">选择时间段</view>
-		<!-- <view class="stage-content">
-			<view class="stage" @click="open">
-				{{formData.start1}}-{{formData.end1}}
-			</view>
-			<view class="stage" @click="open1">
-				{{formData.start2}}-{{formData.end2}}
-			</view>
-		</view> -->
+		<view class="stage-content">
+			<radio-group @change="radioChange">
+				<label v-for="(item, index) in value" :key="item.value" class="radio">
+					<view>
+						<radio :value="item.value" :checked="index === current" />
+					</view>
+					<view>{{item.name}}</view>
+				</label>
+			</radio-group>
+		</view>
 		<view class="tips">预约要求：请开车，带上安全座椅，带上孩子。</view>
-		<!-- <time-picker-popup ref="TimePickerPopupRef" :value="value" @confirm="confirm"></time-picker-popup> -->
-		<!-- <time-picker-popup ref="TimePickerPopupRef2" :value="value" @confirm="confirm1"></time-picker-popup> -->
 	</view>
 </template>
 
 <script>
 import xsForm from '../../components/form/xs-form.vue'
 import xsFormItem from '../../components/form/xs-form-item.vue'
-import TimePickerPopup from '../../components/time-picker-popup/time-picker-popup.vue';
 import { post } from '../../utils/request.js'
 import { get } from '../../utils/request.js'
 export default {
 	components: {
 		xsForm,
-		xsFormItem,
-		TimePickerPopup
+		xsFormItem
 	},
 	data() {
 		return {
@@ -56,13 +54,17 @@ export default {
 				reserveDate:'', // 预约日期
 				reserveTime: '09:00-11:00', // 预约时间
 			},
-			value: ['00', '00', '00', '00'],
+			value: [
+				{
+					value: 'BRA',
+					name: '09:00 - 11:00'
+				},
+				{
+					value: 'JPN',
+					name: '14:00 - 16:00'
+				},
+			],
 			closeDate:[],
-		}
-	},
-	watch:{
-		formData(){
-			console.log(this.formData)
 		}
 	},
 	onLoad() {
@@ -81,6 +83,9 @@ export default {
 		dateChange(value) {
 			this.formData.birthday = value.detail.value
 		},
+		radioChange() {
+			
+		}
 		submit(){
 			const openId = wx.getStorageSync('openId') ?? '';
 			const params = {
@@ -121,6 +126,9 @@ export default {
 	}
 	.stage-content{
 		display: flex;
+		.radio {
+			display: inline-block;
+		}
 	}
 	.tips{
 		color: red;
