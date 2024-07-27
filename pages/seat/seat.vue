@@ -21,13 +21,17 @@
 			</xs-form-item>
 		</xs-form>
 		<view class="title">选择时间段</view>
-			<view class="">
-				<view class="" @click="open">
-					{{formData.start1}}-{{formData.end1}}444
-				</view>
+		<view class="stage-content">
+			<view class="stage" @click="open">
+				{{formData.start1}}-{{formData.end1}}
 			</view>
+			<view class="stage" @click="open1">
+				{{formData.start2}}-{{formData.end2}}
+			</view>
+		</view>
 		<view class="tips">预约要求：请开车，带上安全座椅，带上孩子。</view>
 		<time-picker-popup ref="TimePickerPopupRef" :value="value" @confirm="confirm"></time-picker-popup>
+		<time-picker-popup ref="TimePickerPopupRef2" :value="value" @confirm="confirm1"></time-picker-popup>
 	</view>
 </template>
 
@@ -64,11 +68,18 @@ export default {
 			this.formData.date = value.detail.value
 		},
 		confirm(data) {
-			this.formData.start1 = `data[0] + data[1]
-			this.formData.end1 = data[2] + data[3]
+			this.formData.start1 = data[0] + ":" + data[1]
+			this.formData.end1 = data[2] + ":" + data[3]
+		},
+		confirm1(data) {
+			this.formData.start2 = data[0] + ":" + data[1]
+			this.formData.end2 = data[2] + ":" + data[3]
 		},
 		open() {
 			this.$refs.TimePickerPopupRef.open();
+		},
+		open1() {
+			this.$refs.TimePickerPopupRef2.open();
 		}
 	}
 }
@@ -93,6 +104,9 @@ export default {
 	}
 	.title{
 		text-align: center;
+	}
+	.stage-content{
+		display: flex;
 	}
 	.tips{
 		color: red;
