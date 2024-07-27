@@ -17,7 +17,7 @@
 			<xs-form-item title="联系人" name="realName" type="input" required placeholder="请输入联系人"></xs-form-item>
 			<xs-form-item title="联系电话" name="phone" type="input" required placeholder="请输入手机号"></xs-form-item>
 			<xs-form-item title="预约时间 (请提前两天预约)" name="reserveDate" required></xs-form-item>
-			<picker mode="date" :value="date" @change="dateChange1">
+			<picker mode="date" :value="date" @change="dateChange1" :start="startDate" :end="endDate">
 				<view class="uni-input">{{formData.date}}2222</view>
 			</picker>
 		</xs-form>
@@ -68,6 +68,8 @@ export default {
 				},
 			],
 			closeDate:[],
+			startDate: '2024-07-09',
+			endDate: '2099-07-09'
 		}
 	},
 	onLoad() {
