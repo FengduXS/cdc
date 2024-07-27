@@ -33,6 +33,15 @@
 			</radio-group>
 		</view>
 		<view class="tips">预约要求：请开车，带上安全座椅，带上孩子。</view>
+		 <view class="bottom-content">
+		      <checkbox-group @change="checkboxChange">
+		        <checkbox class="checkbox" value="agree" checked></checkbox>
+		        <text>我已阅读并同意《</text>
+		        <text @click="goToPrivacyPolicy">隐私政策</text>
+		        <text>》</text>
+		      </checkbox-group>
+		      <button class="submit-button" @click="submit">确定</button>
+		    </view>
 	</view>
 </template>
 
@@ -69,7 +78,8 @@ export default {
 			],
 			closeDate:[],
 			startDate: '2024-07-09',
-			endDate: '2099-07-09'
+			endDate: '2099-07-09',
+			isAgree: false // 是否同意隐私政策
 		}
 	},
 	onLoad() {
@@ -91,10 +101,30 @@ export default {
 		dateChange1(value) {
 			this.formData.date = value.detail.value
 		},
-		radioChange() {
-			
+		radioChange(event) {
+		  const value = event.detail.value;
+		  if(value.includes('BRA')) {
+			this.formData.reserveTime = '09:00-11:00';
+		  } else if(value.includes('JPN')) {
+			this.formData.reserveTime = '14:00-16:00';
+		  }
+		},
+		checkboxChange(event) {
+		  this.isAgree = event.detail.value.includes('agree');
+		},
+		goToPrivacyPolicy() {
+		  wx.navigateTo({
+			url: '/pages/privacy-policy/privacy-policy' // 跳转到隐私政策页面
+		  });
 		},
 		submit(){
+			if (!this.isAgree) {
+				wx.showToast({
+				  title: '请先同意隐私政策',
+				  icon: 'none'
+				});
+				return;
+		    }
 			const openId = wx.getStorageSync('openId') ?? '';
 			const params = {
 				openId,
