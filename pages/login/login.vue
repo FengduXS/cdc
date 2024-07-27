@@ -19,22 +19,23 @@
 	  },
 	  methods: {
 	   getUserInfo () {
-		  wx.getUserInfo({
-			success: (res) => {
-				this.userInfo = res.userInfo
-			}
-		  });
+		 //  wx.getUserInfo({
+			// success: (res) => {
+			// 	this.userInfo = res.userInfo
+			// }
+		 //  });
 		},
 	    login() {
-	      wx.login({
-	        success: (res) => {
-	          if (res.code) {
-	            this.fetchAccessTokenAndOpenid(res.code);
-	          } else {
-	            console.log('登录失败！' + res.errMsg);
-	          }
-	        }
-	      });
+	      // wx.login({
+	      //   success: (res) => {
+	      //     if (res.code) {
+	      //       this.fetchAccessTokenAndOpenid(res.code);
+	      //     } else {
+	      //       console.log('登录失败！' + res.errMsg);
+	      //     }
+	      //   }
+	      // });
+		  uni.navigateTo({url: '/pages/home/home'})
 	    },
 	    fetchAccessTokenAndOpenid(code) {
 	       post('/getOpenid', { code: code })

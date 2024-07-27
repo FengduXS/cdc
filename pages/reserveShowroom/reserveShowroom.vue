@@ -30,8 +30,12 @@ export default {
 		};
 	},
 	methods: {
-		jump(){
-			
+		jump(data){
+			let pageMap = {
+				1: '/pages/exhibitionBooking/exhibitionBooking',
+				2: '/pages/answer/answer',
+			}
+			uni.navigateTo({url: pageMap[data]})
 		}
 	}
 }
