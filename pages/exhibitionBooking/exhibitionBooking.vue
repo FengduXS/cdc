@@ -30,75 +30,72 @@
 				<view class="tips">我已阅读并同意<view class="policy" @click.stop="policyClick">《隐私政策》</view></view>
 			</label>
 		</checkbox-group>
-		<button class="submit-button" @click="submit">确定</button>
+		<button class="submit-button" @click="submitForm">确定</button>
 	</view>
 </template>
 
 <script>
-import xsForm from '../../components/form/xs-form.vue'
-import xsFormItem from '../../components/form/xs-form-item.vue'
-export default {
-	components: {
-		xsForm,
-		xsFormItem
-	},
-	data() {
-		return {
-			formData: {
-				weight: '',
-				aaa: '',
-				bbb:'',
-				bbc: '',
-				sdd: '',
-				date: ''
+	import xsForm from '../../components/form/xs-form.vue'
+	import xsFormItem from '../../components/form/xs-form-item.vue'
+	export default {
+		components: {
+			xsForm,
+			xsFormItem
+		},
+		data() {
+			return {
+				formData: {
+					weight: '',
+					aaa: '',
+					bbb:'',
+					bbc: '',
+					sdd: '',
+					date: ''
+				},
+				value: [
+					{
+						value: 'BRA',
+						name: '09:00 - 11:00'
+					},
+					{
+						value: 'JPN',
+						name: '14:00 - 16:00'
+					},
+				],
+				startDate: '2024-07-09',
+				endDate: '2099-07-09',
+				checkboxValue: false
+			}
+		},
+		methods: {
+			dateChange(value) {
+				this.formData.date = value.detail.value
 			},
-			value: [
-				{
-					value: 'BRA',
-					name: '09:00 - 11:00'
-				},
-				{
-					value: 'JPN',
-					name: '14:00 - 16:00'
-				},
-			],
-			startDate: '2024-07-09',
-			endDate: '2099-07-09',
-			checkboxValue: false
-		}
-	},
-	methods: {
-		//
-		 
-		dateChange(value) {
-			this.formData.date = value.detail.value
-		},
-		radioChange() {
-			
-		},
-		submit(){
-			// 表单那校验
-			this.$refs.form.validateFields().then(values => {
-			   let params = {
-				 ...this.formData,
-				 ...values,
-			   }
-			   console.log('params',params)
-			 })
-		   }
-		}
-		policyClick(){
-			uni.navigateTo({url: '/pages/privacyPolicy/privacyPolicy'})
-		},
-		checkboxChange(value) {
-			if (value.detail.value.length > 0){
-				this.checkboxValue = true
-			} else {
-				this.checkboxValue = false
+			radioChange() {
+				
+			},
+			submitForm(){
+				// 表单校验
+				this.$refs.form.validateFields().then(values => {
+				   let params = {
+					 ...this.formData,
+					 ...values
+				   }
+				   console.log('params',params)
+				})
+			},
+			policyClick(){
+				uni.navigateTo({url: '/pages/privacyPolicy/privacyPolicy'})
+			},
+			checkboxChange(value) {
+				if (value.detail.value.length > 0){
+					this.checkboxValue = true
+				} else {
+					this.checkboxValue = false
+				}
 			}
 		}
 	}
-}
 </script>
 
 <style lang="scss" scoped>
