@@ -120,54 +120,84 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _utils = __webpack_require__(/*! ./utils.js */ 132);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var xsPopup = function xsPopup() {
   __webpack_require__.e(/*! require.ensure | components/popup/xs-poup */ "components/popup/xs-poup").then((function () {
     return resolve(__webpack_require__(/*! ../popup/xs-poup.vue */ 143));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
-var _default = {
+var _default2 = {
   name: 'TimePickerPopup',
-  props: _utils.props,
+  props: {
+    // 当前选中的值
+    value: {
+      type: Array,
+      default: function _default() {
+        return ['00', '00', '00', '00'];
+      }
+    },
+    // 标题
+    title: {
+      type: String,
+      default: '时间'
+    },
+    // 取消按钮文字
+    cancelText: {
+      type: String,
+      default: '取消'
+    },
+    // 取消按钮颜色
+    canceColor: {
+      type: String,
+      default: '#666666'
+    },
+    // 确定按钮文字
+    confirmText: {
+      type: String,
+      default: '确定'
+    },
+    // 确定按钮颜色
+    confirmColor: {
+      type: String,
+      default: '#2bb781'
+    },
+    // 分割符
+    segmentation: {
+      type: String,
+      default: '-'
+    },
+    // 设置选择器中间选中框的类名 注意页面或组件的style中写了scoped时，需要在类名前写/deep/
+    indicatorClass: {
+      type: String,
+      default: 'picker-view__indicator'
+    },
+    // 设置选择器中间选中框的样式
+    indicatorStyle: {
+      type: String,
+      default: ''
+    }
+  },
   components: {
     xsPopup: xsPopup
   },
   data: function data() {
+    // 滚动数据
+    var range = [[], [], [], []];
+    for (var i = 0; i < 24; i++) {
+      range[0].push(i >= 10 ? String(i) : "0".concat(i));
+      range[2].push(i >= 10 ? String(i) : "0".concat(i));
+    }
+    for (var _i = 0; _i < 60; _i++) {
+      range[1].push(_i >= 10 ? String(_i) : "0".concat(_i));
+      range[3].push(_i >= 10 ? String(_i) : "0".concat(_i));
+    }
     return {
-      rangeList: _utils.range,
+      rangeList: range,
       pickerValue: [0, 0, 0, 0],
-      isScoll: false // 是否正在滚动
+      isScoll: false,
+      // 是否正在滚动
+      visible: false
     };
   },
-
   methods: {
     /**
      * 开启弹窗
@@ -184,13 +214,15 @@ var _default = {
       } else {
         this.pickerValue = [0, 0, 0, 0];
       }
-      this.$refs.popup.open();
+      this.visible = true;
+      // this.$refs.popup.open();
     },
     /**
      * 关闭弹窗
      */
     close: function close() {
-      this.$refs.popup.close();
+      this.visible = false;
+      // this.$refs.popup.close();
       // 重置选中数据
       this.pickerValue = [0, 0, 0, 0];
     },
@@ -237,7 +269,7 @@ var _default = {
     }
   }
 };
-exports.default = _default;
+exports.default = _default2;
 
 /***/ }),
 

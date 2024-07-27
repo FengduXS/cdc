@@ -114,7 +114,7 @@ var components
 try {
   components = {
     timePickerPopup: function () {
-      return Promise.all(/*! import() | components/time-picker-popup/time-picker-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/time-picker-popup/time-picker-popup")]).then(__webpack_require__.bind(null, /*! @/components/time-picker-popup/time-picker-popup.vue */ 127))
+      return __webpack_require__.e(/*! import() | components/time-picker-popup/time-picker-popup */ "components/time-picker-popup/time-picker-popup").then(__webpack_require__.bind(null, /*! @/components/time-picker-popup/time-picker-popup.vue */ 127))
     },
   }
 } catch (e) {
@@ -200,7 +200,7 @@ var xsFormItem = function xsFormItem() {
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var TimePickerPopup = function TimePickerPopup() {
-  Promise.all(/*! require.ensure | components/time-picker-popup/time-picker-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/time-picker-popup/time-picker-popup")]).then((function () {
+  __webpack_require__.e(/*! require.ensure | components/time-picker-popup/time-picker-popup */ "components/time-picker-popup/time-picker-popup").then((function () {
     return resolve(__webpack_require__(/*! ../../components/time-picker-popup/time-picker-popup.vue */ 127));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };

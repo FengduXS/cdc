@@ -1,32 +1,30 @@
 <template>
-  <view class="popup-mask" @click="close">
-    <view v-show="visible" class="popup-content" @click.stop>
-      <!-- popup的内容区域 -->
-      <view>这里是popup的内容</view>
-    </view>
+	<view class="">
+	  <view class="popup-mask" @click="close" v-if="visible">
+		<view v-if="visible" class="popup-content" @click.stop>
+		  <slot></slot>
+		</view>
+	  </view>
   </view>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      visible: false
-    }
+  props:{
+	  visible: {
+	    type: Boolean,
+	    default: false
+	  },
   },
   methods: {
-    open() {
-      this.visible = true
-    },
     close() {
-		console.log(111)
-      this.visible = false
+      this.$emit('close')
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .popup-mask {
   position: fixed;
   left: 0;

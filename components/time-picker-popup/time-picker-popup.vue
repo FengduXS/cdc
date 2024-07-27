@@ -1,5 +1,5 @@
 <template>
-	<xs-popup ref="xspopup">
+	<xs-popup ref="xspopup" :visible="visible" @close="close">
 		<view class="custom-picker">
 			<view class="custom-picker__header">
 				<view class="cancel" :style="{ color: canceColor }" @tap="onCancel">{{ cancelText }}</view>
@@ -27,22 +27,80 @@
 </template>
 
 <script>
-	import {
-		props,
-		range
-	} from './utils.js';
 	import xsPopup from '../popup/xs-poup.vue';
 	export default {
 		name: 'TimePickerPopup',
-		props: props,
+		props: {
+			// 当前选中的值
+			value: {
+				type: Array,
+				default: () => (['00', '00', '00', '00'])
+			},
+			// 标题
+			title: {
+				type: String,
+				default: '时间'
+			},
+			// 取消按钮文字
+			cancelText: {
+				type: String,
+				default: '取消'
+			},
+			// 取消按钮颜色
+			canceColor: {
+				type: String,
+				default: '#666666'
+			},
+			// 确定按钮文字
+			confirmText: {
+				type: String,
+				default: '确定'
+			},
+			// 确定按钮颜色
+			confirmColor: {
+				type: String,
+				default: '#2bb781'
+			},
+			// 分割符
+			segmentation: {
+				type: String,
+				default: '-'
+			},
+			// 设置选择器中间选中框的类名 注意页面或组件的style中写了scoped时，需要在类名前写/deep/
+			indicatorClass: {
+				type: String,
+				default: 'picker-view__indicator'
+			},
+			// 设置选择器中间选中框的样式
+			indicatorStyle: {
+				type: String,
+				default: ''
+			}
+		},
 		components: {
 			xsPopup
 		},
 		data() {
+			// 滚动数据
+			let range = [
+				[],
+				[],
+				[],
+				[]
+			];
+			for (let i = 0; i < 24; i++) {
+				range[0].push(i >= 10 ? String(i) : `0${i}`);
+				range[2].push(i >= 10 ? String(i) : `0${i}`);
+			}
+			for (let i = 0; i < 60; i++) {
+				range[1].push(i >= 10 ? String(i) : `0${i}`);
+				range[3].push(i >= 10 ? String(i) : `0${i}`);
+			}
 			return {
 				rangeList: range,
 				pickerValue: [0, 0, 0, 0],
 				isScoll: false, // 是否正在滚动
+				visible: false
 			}
 		},
 		methods: {
@@ -57,13 +115,15 @@
 				} else {
 					this.pickerValue = [0, 0, 0, 0];
 				}
-				this.$refs.popup.open();
+				this.visible = true
+				// this.$refs.popup.open();
 			},
 			/**
 			 * 关闭弹窗
 			 */
 			close() {
-				this.$refs.popup.close();
+				this.visible = false
+				// this.$refs.popup.close();
 				// 重置选中数据
 				this.pickerValue = [0, 0, 0, 0];
 			},

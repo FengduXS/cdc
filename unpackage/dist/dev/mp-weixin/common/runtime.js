@@ -105,11 +105,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/time-picker-popup/time-picker-popup":1,"components/form/xs-form":1,"components/form/xs-form-item":1,"components/popup/xs-poup":1};
+/******/ 		var cssChunks = {"components/form/xs-form":1,"components/form/xs-form-item":1,"components/time-picker-popup/time-picker-popup":1,"components/popup/xs-poup":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/time-picker-popup/time-picker-popup":"components/time-picker-popup/time-picker-popup","components/form/xs-form":"components/form/xs-form","components/form/xs-form-item":"components/form/xs-form-item","components/popup/xs-poup":"components/popup/xs-poup"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/form/xs-form":"components/form/xs-form","components/form/xs-form-item":"components/form/xs-form-item","components/time-picker-popup/time-picker-popup":"components/time-picker-popup/time-picker-popup","components/popup/xs-poup":"components/popup/xs-poup"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
