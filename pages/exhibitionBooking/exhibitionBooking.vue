@@ -68,12 +68,25 @@ export default {
 		}
 	},
 	methods: {
+		//
+		 
 		dateChange(value) {
 			this.formData.date = value.detail.value
 		},
 		radioChange() {
 			
 		},
+		submit(){
+			// 表单那校验
+			this.$refs.form.validateFields().then(values => {
+			   let params = {
+				 ...this.formData,
+				 ...values,
+			   }
+			   console.log('params',params)
+			 })
+		   }
+		}
 		policyClick(){
 			uni.navigateTo({url: '/pages/privacyPolicy/privacyPolicy'})
 		},
