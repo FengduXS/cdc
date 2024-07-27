@@ -8,12 +8,12 @@
 				<span>预约座椅</span>
 				<img src="/static/arrow.png" alt="" class="arrow"/>
 			</div>
-			<div class="item" @click="jump(1)">
+			<div class="item" @click="jump(2)">
 				<img src="/static/person.png" alt="" class="icon"/>
 				<span>我的预约</span>
 				<img src="/static/arrow.png" alt="" class="arrow"/>
 			</div>
-			<div class="item" @click="jump(1)">
+			<div class="item" @click="jump(3)">
 				<img src="/static/chair.png" alt="" class="icon"/>
 				<span>切换为科普中心</span>
 				<img src="/static/arrow.png" alt="" class="arrow"/>
@@ -33,8 +33,8 @@ export default {
 		jump(data){
 			let pageMap = {
 				1: '/pages/seat/seat',
-				2: '/pages/reserveShowroom/reserveShowroom',
-				3: '/pages/reserveSeat/reserveSeat',
+				2: '/pages/myOrder/myOrder',
+				3: '/pages/reserveShowroom/reserveShowroom',
 			}
 			uni.navigateTo({url: pageMap[data]})
 		}
