@@ -5,31 +5,51 @@
 				<view class="title">预约编码：232323</view>
 				<view class="value">待审核</view>
 			</view>
-			<view class="field-content">
+			
+			<view class="field-content" v-if="type == 1">
+				<view class="field">称呼</view>
+				<view class="value">2024-09-08</view>
+			</view>
+			<view class="field-content" v-if="type == 1">
+				<view class="field">单位</view>
+				<view class="value">2024-09-08</view>
+			</view>
+			<view class="field-content" v-if="type == 1">
+				<view class="field">电话</view>
+				<view class="value">2024-09-08</view>
+			</view>
+			<view class="field-content" v-if="type == 1">
+				<view class="field">人数</view>
+				<view class="value">2024-09-08</view>
+			</view>
+			
+			<view class="field-content" v-if="type == 2">
 				<view class="field">孩子出生日期</view>
 				<view class="value">2024-09-08</view>
 			</view>
-			<view class="field-content">
+			<view class="field-content" v-if="type == 2">
 				<view class="field">孩子体重</view>
 				<view class="value">2</view>
 			</view>
-			<view class="field-content">
+			<view class="field-content" v-if="type == 2">
 				<view class="field">联系人</view>
 				<view class="value">2</view>
 			</view>
-			<view class="field-content">
+			<view class="field-content" v-if="type == 2">
 				<view class="field">联系电话</view>
 				<view class="value">323232323</view>
 			</view>
-			<view class="field-content">
+			<view class="field-content" v-if="type == 2">
 				<view class="field">预约日期</view>
 				<view class="value"></view>
 			</view>
-			<view class="field-content">
+			<view class="field-content" v-if="type == 2">
 				<view class="field">预约时段</view>
 				<view class="value"></view>
 			</view>
-			<view class="end-content">
+			
+			
+			<view class="end-content" v-if="type === 2">
 				<view class="field">座椅名称</view>
 				<view class="value">反向安全座椅</view>
 			</view>
