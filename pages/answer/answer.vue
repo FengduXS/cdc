@@ -11,7 +11,7 @@
 				</label>
 			</radio-group>
 		</view>
-		<view class="submit" @click="submit">提交</view>
+		<view class="submit" @click="submit" v-if="question && question.length">提交</view>
 	</view>
 </template>
 

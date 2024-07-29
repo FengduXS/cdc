@@ -14,7 +14,8 @@ export default {
 	data() {
 		return {
 			openId: null,
-			userInfo: null
+			userInfo: null,
+			isLogin: false
 		};
 	},
 	methods: {
@@ -26,15 +27,20 @@ export default {
 			});
 		},
 		login() {
-			wx.login({
-				success: (res) => {
-					if (res.code) {
-						this.fetchAccessTokenAndOpenid(res.code);
-					} else {
-						console.log('登录失败！' + res.errMsg);
-					}
-				}
-			});
+			// if (!this.isLogin) {
+			// 	this.isLogin = true
+			// 	wx.login({
+			// 		success: (res) => {
+			// 			this.isLogin =false
+			// 			if (res.code) {
+			// 				this.fetchAccessTokenAndOpenid(res.code);
+			// 			} else {
+			// 				console.log('登录失败！' + res.errMsg);
+			// 			}
+			// 		}
+			// 	})
+			// }
+			uni.navigateTo({ url: '/pages/home/home' })
 		},
 		fetchAccessTokenAndOpenid(code) {
 			post('/getOpenid', { code: code })
@@ -110,6 +116,8 @@ export default {
 		width: calc(100% - 82px);
 		text-align: center;
 		border-radius: 20px;
+		
+		bottom: 60px;
 	}
 }
 </style>

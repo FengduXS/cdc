@@ -3,97 +3,83 @@
 		{
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "线上展厅"
 			}
 		},
 		{
 			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "线上展厅"
 			}
 		},
 		{
 			"path" : "pages/reserveSeat/reserveSeat",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "预约座椅"
 			}
 		},
 		{
 			"path" : "pages/reserveShowroom/reserveShowroom",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "预约展馆"
 			}
 		},
 		{
 			"path" : "pages/question/question",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
-			}
-		},
-		{
-			"path" : "pages/answeringPrize/answeringPrize",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "答题领奖"
 			}
 		},
 		{
 			"path" : "pages/answer/answer",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "答题领奖"
 			}
 		},
 		{
 			"path" : "pages/qualification/qualification",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "答题领奖"
 			}
 		},
 		{
 			"path" : "pages/seat/seat",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "预约座椅"
 			}
 		},
 		{
 			"path" : "pages/exhibition/exhibition",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "线上展厅"
 			}
 		},
 		{
 			"path" : "pages/exhibitionBooking/exhibitionBooking",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "预约展馆"
 			}
 		},
 		{
 			"path" : "pages/myOrder/myOrder",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "我的预约"
 			}
 		},
 		{
 			"path" : "pages/privacyPolicy/privacyPolicy",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
-			}
-		},
-		{
-			"path" : "pages/seatMatching/seatMatching",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "隐私政策"
 			}
 		}
 	],

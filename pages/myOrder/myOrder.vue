@@ -1,6 +1,6 @@
 <template>
 	<view class="myOrder">
-		<view class="order-content" v-for="item in list">
+		<view class="order-content" v-for="(item, index) in list" :key="index">
 			<view class="title-content">
 				<view class="title">预约编码：{{ item.reserveNo }}</view>
 				<view class="value" v-if="item.status === '1'">待审核</view>
@@ -109,10 +109,12 @@ export default {
 				});
 		},
 		cancel(reserveNo) {
+			let _this = this
 			uni.showModal({
 				title: '提示',
 				content: '您确定要取消吗?',
 				success: function (res) {
+					console.log(_this)
 					if (res.confirm) {
 						const url = this.type === 1 ? '/reserve/showroom/cancelReserve' : '/reserve/seat/cancelReserve'
 						const p = {
@@ -124,32 +126,11 @@ export default {
 						}
 						post(url, p)
 							.then(res => {
-								// 刷新页面
-								// const params = {
-								// 	openId: wx.getStorageSync('openId') ?? ''
-								// }
-								// const url = this.type === 1 ? '/reserve/showroom/list' : '/reserve/seat/list'
-									// const url2 = this.type === 1 ? '/pages/reserveShowroom/reserveShowroom' : '/pages/reserveSeat/reserveSeat'
-								// post(url, params)
-								// 	.then(res => {
-								// 		this.list = res.data;
-								// 		if (!this.list.length) {
-								// 			wx.showToast({
-								// 				title: '您还没有预约，请先预约！',
-								// 				icon: 'none'
-								// 			});
-								// 			uni.navigateTo({ url: url2 })
-								// 		}
-								// 	})
-								// 	.catch(error => {
-								// 		console.error('API请求失败:', error);
-								// 	});
 								wx.showToast({
 									title: res.msg,
 									icon: 'none'
 								});
-								const url2 = this.type === 1 ? '/pages/reserveShowroom/reserveShowroom' : '/pages/reserveSeat/reserveSeat'
-								uni.navigateTo({ url: url2})
+								_this.getData()
 							})
 							.catch(error => {
 								console.error('API请求失败:', error);

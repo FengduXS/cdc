@@ -36,6 +36,7 @@ const get = (url,parmas) => {
   })
 }
 module.exports = {
+  baseUrl,
   post,
   get
 }
