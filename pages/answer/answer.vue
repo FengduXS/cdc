@@ -51,8 +51,9 @@
 					}
 				})
 				if (valide){
+					const openId = wx.getStorageSync('openId') ?? '';
 					let param = {
-						openId: '3333',
+						openId,
 						data: this.question.map(item => {
 							return {
 								...item,
@@ -62,8 +63,42 @@
 							}
 						})
 					}
-					post('question/checkAnswer',param)
-					  .then(response => {
+					let _this =this
+					post('/question/checkAnswer',param)
+					  .then(res => {
+						  if (res.code !== '0') {
+						  	wx.showToast({
+						  		title: res.msg,
+						  		icon: 'none'
+						  	});
+							
+						}else {
+							if(res.data.correctQuantity === 5){
+								uni.showModal({
+									title: '成功提交',
+									content: '恭喜你，共答对5道题，是否到现场领取礼品',
+									confirmText: '立即预约',
+									success: function () {
+										uni.navigateTo({ url: '/pages/reserveShowroom/reserveShowroom' })
+									},
+									cancel:function() {
+										uni.navigateTo({ url: '/pages/question/question' })
+									}
+								})
+							} else {
+								uni.showModal({
+									title: '成功提交',
+									content: `很抱歉，共答对${res.data.correctQuantity}道题，需要全部答对才可以领取礼品哦`,
+									confirmText: '重新答题',
+									success: function () {
+										_this.fetchData()
+									},
+									cancel:function() {
+										uni.navigateTo({ url: '/pages/question/question' })
+									}
+								})
+							}
+						}
 					  })
 					  .catch(error => {
 						console.error('API请求失败:', error);
@@ -116,6 +151,7 @@
 		border: 1px solid #21C4FF;
 		text-align: center;
 		border-radius: 20px;
+		    margin-top: 60px;
 	}
 }
 </style>

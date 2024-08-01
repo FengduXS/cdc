@@ -126,11 +126,14 @@ export default {
 						}
 						post(url, p)
 							.then(res => {
-								wx.showToast({
-									title: res.msg,
-									icon: 'none'
-								});
-								_this.getData()
+								if (res.code != '0') {
+									wx.showToast({
+										title: res.msg,
+										icon: 'none'
+									});
+								}else {
+									_this.getData()
+								}
 							})
 							.catch(error => {
 								console.error('API请求失败:', error);

@@ -27,7 +27,7 @@ const get = (url,parmas) => {
           'content-type': 'application/json'
       },
       success: (res)=> {
-        resolve(res)
+        resolve(res.data)
       },
       fail: (err) => {
         reject(err)

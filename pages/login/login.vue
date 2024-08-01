@@ -10,7 +10,7 @@
 
 <script>
 import { post } from '../../utils/request.js'
-export default {
+export default { 
 	data() {
 		return {
 			openId: null,

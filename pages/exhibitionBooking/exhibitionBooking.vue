@@ -93,7 +93,7 @@ export default {
 		getCloseDate(){
 			get('/reserve/closeDate',{})
 			  .then(res => {
-				  this.closeDate=res.data ?? []
+				  this.closeDate=res.data || []
 			  })
 			  .catch(error => {
 			    console.error('API请求失败:', error);
@@ -138,11 +138,25 @@ export default {
 				}
 				post('/reserve/showroom', params)
 					.then(res => {
-						wx.showToast({
-							title: res.msg,
-							icon: 'none'
-						});
-						// uni.navigateTo({ url: '/pages/reserveShowroom/reserveShowroom' })
+						if (res.code !== '0') {
+							wx.showToast({
+								title: res.msg,
+								icon: 'none'
+							});
+						}else {
+							wx.requestSubscribeMessage({
+							  tmplIds: ['Z6uCYxdHVzwc296KFWxQKtHCu6GKmCgbNeGbni71VYw'],
+							  complete (res) {
+								uni.showModal({
+									title: '成功提交',
+									content: '请在我的预约查看预约情况',
+									success: function () {
+										uni.navigateTo({ url: '/pages/reserveShowroom/reserveShowroom' })
+									}
+								})
+							  }
+							})
+						}
 					})
 					.catch(error => {
 						console.error('API请求失败:', error);

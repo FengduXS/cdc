@@ -119,7 +119,7 @@ export default {
 		getCloseDate() {
 			get('/reserve/closeDate', {})
 				.then(res => {
-					this.closeDate = res.data ?? []
+					this.closeDate = res.data || []
 				})
 				.catch(error => {
 					console.error('API请求失败:', error);
@@ -135,7 +135,7 @@ export default {
 				  icon: 'none'
 				});
 			} else {
-				this.formData.reserveDate = value.detail.values
+				this.formData.reserveDate = value.detail.value
 			}
 		},
 		radioChange(event) {
@@ -197,15 +197,34 @@ export default {
 			}
 		},
 		confirmBook(){
+			let _this = this
 			wx.requestSubscribeMessage({
 			  tmplIds: ['Z6uCYxdHVzwc296KFWxQKtHCu6GKmCgbNeGbni71VYw'],
-			  complete () {
-				uni.showModal({
-					title: '成功提交',
-					content: '请在我的预约查看预约情况',
-					success: function (res) {
-						uni.navigateTo({ url: '/pages/reserveSeat/reserveSeat' })
-					}
+			  complete (res) {
+				  const openId = wx.getStorageSync('openId') ?? '';
+				  const params = {
+				  	openId,
+				  	data: _this.formData
+				  }
+				if(res['Z6uCYxdHVzwc296KFWxQKtHCu6GKmCgbNeGbni71VYw'] == 'accept') {
+					params.data.isReserve = true
+				} else {
+					params.data.isReserve = false
+				}
+				_this.$refs.form.validateFields().then(values => {
+					post('/reserve/seat', params)
+					.then(res => {
+						uni.showModal({
+							title: '成功提交',
+							content: '请在我的预约查看预约情况',
+							success: function () {
+								uni.navigateTo({ url: '/pages/reserveSeat/reserveSeat' })
+							}
+						})
+					})
+					.catch(error => {
+						console.error('API请求失败:', error);
+					});
 				})
 			  }
 			})
@@ -328,6 +347,7 @@ export default {
 		}
 		.btn-conetnt{
 			padding: 0 20px;
+			margin-top: 90px;
 			.submit-button {
 				margin-top: 20px;
 				background-color: blue;

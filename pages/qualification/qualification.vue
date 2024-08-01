@@ -29,8 +29,9 @@ export default {
 	},
 	methods: {
 		fetchData() {
+			const openId = wx.getStorageSync('openId') ?? '';
 			const params = {
-				"openId": "3333",
+				openId,
 			}
 			post('/question/queryQuizRecord',params).then(response => {
 				this.hasPrizeQualification = response.data.quizCorrectQuantity === 5;
