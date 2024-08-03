@@ -4,13 +4,13 @@
 		<span class="title">欢迎进入</span>
 		<span class="title">普陀区公共卫生科普中心线上展厅</span>
 		<img src="/static/exhibitionLogo.png" alt="" class="logo" />
-		<div class="login" @click="login">登录</div>
+		<div class="login" @click="login">登录{{ isLogin }}</div>
 	</view>
 </template>
 
 <script>
 import { post } from '../../utils/request.js'
-export default { 
+export default {
 	data() {
 		return {
 			openId: null,
@@ -31,12 +31,16 @@ export default {
 				this.isLogin = true
 				wx.login({
 					success: (res) => {
-						this.isLogin =false
+						this.isLogin = false
 						if (res.code) {
 							this.fetchAccessTokenAndOpenid(res.code);
 						} else {
 							console.log('登录失败！' + res.errMsg);
 						}
+					},
+					fail: (err) => {
+						this.isLogin = false;
+						console.error('wx.login 失败：', err);
 					}
 				})
 			}
@@ -115,7 +119,7 @@ export default {
 		width: calc(100% - 82px);
 		text-align: center;
 		border-radius: 20px;
-		
+
 		bottom: 60px;
 	}
 }
