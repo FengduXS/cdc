@@ -239,6 +239,7 @@ export default {
 <style lang="scss" scoped>
 .seat-form {
 	height: 100vh;
+	font-size: 14px;
 	.seat-form-conent{
 		padding: 20px 20px 0 20px;
 		.date-picker-content {

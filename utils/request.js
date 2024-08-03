@@ -2,7 +2,7 @@ const baseUrl = "http://117.50.174.221:8015/cdcProblems"
 // const baseUrl = "http://cdc.crowninfo.cn/cdcProblems"
 const post = (url,parmas) => {
   return new Promise((resolve, reject) => {
-    uni.request({
+    uni.request({ 
       url: baseUrl + url,
       data: parmas,
       method: 'POST',

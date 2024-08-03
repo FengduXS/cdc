@@ -4,7 +4,7 @@
 		<span class="title">欢迎进入</span>
 		<span class="title">普陀区公共卫生科普中心线上展厅</span>
 		<img src="/static/exhibitionLogo.png" alt="" class="logo" />
-		<div class="login" @click="login">登录{{ isLogin }}</div>
+		<div class="login" @click="login">登录{{ isLogin }},{{ code }},{{  fetch}},{{ error }}</div>
 	</view>
 </template>
 
@@ -15,7 +15,10 @@ export default {
 		return {
 			openId: null,
 			userInfo: null,
-			isLogin: false
+			isLogin: false,
+			code:false,
+			fetch:false,
+			error:false
 		};
 	},
 	methods: {
@@ -33,6 +36,7 @@ export default {
 					success: (res) => {
 						this.isLogin = false
 						if (res.code) {
+							this.code = true;
 							this.fetchAccessTokenAndOpenid(res.code);
 						} else {
 							console.log('登录失败！' + res.errMsg);
@@ -48,11 +52,13 @@ export default {
 		fetchAccessTokenAndOpenid(code) {
 			post('/getOpenid', { code: code })
 				.then(response => {
+					this.fetch = true
 					this.openId = response.data.openId;
 					wx.setStorageSync('openId', this.openId);
 					uni.navigateTo({ url: '/pages/home/home' })
 				})
 				.catch(error => {
+					this.error = true
 					console.error('获取openId失败', error);
 				});
 		}
