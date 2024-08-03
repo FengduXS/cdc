@@ -4,18 +4,21 @@
 		<span class="title">欢迎进入</span>
 		<span class="title">普陀区公共卫生科普中心线上展厅</span>
 		<img src="/static/exhibitionLogo.png" alt="" class="logo" />
-		<div class="login" @click="login">登录</div>
+		<div class="login" @click="login">登录{{ isLogin }},{{ code }},{{  fetch}},{{ error }}</div>
 	</view>
 </template>
 
 <script>
 import { post } from '../../utils/request.js'
-export default { 
+export default {
 	data() {
 		return {
 			openId: null,
 			userInfo: null,
-			isLogin: false
+			isLogin: false,
+			code:false,
+			fetch:false,
+			error:false
 		};
 	},
 	methods: {
@@ -31,12 +34,17 @@ export default {
 				this.isLogin = true
 				wx.login({
 					success: (res) => {
-						this.isLogin =false
+						this.isLogin = false
 						if (res.code) {
+							this.code = true;
 							this.fetchAccessTokenAndOpenid(res.code);
 						} else {
 							console.log('登录失败！' + res.errMsg);
 						}
+					},
+					fail: (err) => {
+						this.isLogin = false;
+						console.error('wx.login 失败：', err);
 					}
 				})
 			}
@@ -44,11 +52,13 @@ export default {
 		fetchAccessTokenAndOpenid(code) {
 			post('/getOpenid', { code: code })
 				.then(response => {
+					this.fetch = true
 					this.openId = response.data.openId;
 					wx.setStorageSync('openId', this.openId);
 					uni.navigateTo({ url: '/pages/home/home' })
 				})
 				.catch(error => {
+					this.error = true
 					console.error('获取openId失败', error);
 				});
 		}
@@ -115,7 +125,7 @@ export default {
 		width: calc(100% - 82px);
 		text-align: center;
 		border-radius: 20px;
-		
+
 		bottom: 60px;
 	}
 }

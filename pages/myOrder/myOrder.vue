@@ -91,8 +91,8 @@ export default {
 			const params = {
 				openId: wx.getStorageSync('openId') ?? ''
 			}
-			const url = this.type === 1 ? '/reserve/showroom/list' : '/reserve/seat/list'
-			const url2 = this.type === 1 ? '/pages/reserveShowroom/reserveShowroom' : '/pages/reserveSeat/reserveSeat'
+			const url = this.type === '1' ? '/reserve/showroom/list' : '/reserve/seat/list'
+			const url2 = this.type === '1' ? '/pages/reserveShowroom/reserveShowroom' : '/pages/reserveSeat/reserveSeat'
 			post(url, params)
 				.then(res => {
 					this.list = res.data;
@@ -116,7 +116,7 @@ export default {
 				success: function (res) {
 					console.log(_this)
 					if (res.confirm) {
-						const url = this.type === 1 ? '/reserve/showroom/cancelReserve' : '/reserve/seat/cancelReserve'
+						const url = _this.type === '1' ? '/reserve/showroom/cancelReserve' : '/reserve/seat/cancelReserve'
 						const p = {
 							openId: wx.getStorageSync('openId') ?? '',
 							data: {

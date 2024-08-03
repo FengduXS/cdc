@@ -2,7 +2,7 @@
 const baseUrl = "https://cdc.crowninfo.cn/cdcProblems"
 const post = (url,parmas) => {
   return new Promise((resolve, reject) => {
-    uni.request({
+    uni.request({ 
       url: baseUrl + url,
       data: parmas,
       method: 'POST',
