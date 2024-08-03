@@ -27,20 +27,19 @@ export default {
 			});
 		},
 		login() {
-			// if (!this.isLogin) {
-			// 	this.isLogin = true
-			// 	wx.login({
-			// 		success: (res) => {
-			// 			this.isLogin =false
-			// 			if (res.code) {
-			// 				this.fetchAccessTokenAndOpenid(res.code);
-			// 			} else {
-			// 				console.log('登录失败！' + res.errMsg);
-			// 			}
-			// 		}
-			// 	})
-			// }
-			uni.navigateTo({ url: '/pages/home/home' })
+			if (!this.isLogin) {
+				this.isLogin = true
+				wx.login({
+					success: (res) => {
+						this.isLogin =false
+						if (res.code) {
+							this.fetchAccessTokenAndOpenid(res.code);
+						} else {
+							console.log('登录失败！' + res.errMsg);
+						}
+					}
+				})
+			}
 		},
 		fetchAccessTokenAndOpenid(code) {
 			post('/getOpenid', { code: code })
