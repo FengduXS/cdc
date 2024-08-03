@@ -1,5 +1,5 @@
 <template>
-  <view class="formItem">
+  <view class="formItem" :class="className">
     <view class="item">
       <view class="line-item-center titleBox">
         <view class="required">
@@ -88,6 +88,10 @@ export default {
       type: [Boolean, String],
       default: false,
     },
+	className:{
+      type: String,
+      default: "",
+    }
   },
   data() {
     return {
@@ -146,22 +150,28 @@ export default {
 
 <style lang="scss" scoped>
 .formItem {
-  padding: 25rpx 0;
-  font-size: 28rpx;
-
+  padding: 15rpx 0;
+  font-size: 34rpx;
   .item {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+	height: 60rpx;
 
     .titleBox {
       flex-shrink: 0;
-      margin-right: 10rpx;
+      margin-right: 30rpx;
 	  display: flex;
 	  align-items: center;
+	  width: 200rpx;
+	  height: 60rpx;
       .title {
-        font-size: 28rpx;
+        font-size: 34rpx;
+		flex: 1;
+		text-align: justify;
+		text-align-last: justify;
+		line-height: 60rpx;
       }
 
       .required {
@@ -197,11 +207,21 @@ export default {
       text-align: right;
       font-size: 28rpx;
       color: #030303;
+	  background-color: #f7f7f7;
+	  border-radius: 3px;
+	  height: 60rpx;
     }
 
     .icon {
       margin-left: 5rpx;
     }
   }
+}
+.bookingdate{
+	.item{
+		.titleBox{
+			width: auto;
+		}
+	}
 }
 </style>

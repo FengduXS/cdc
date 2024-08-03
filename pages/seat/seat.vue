@@ -14,7 +14,7 @@
 		</view>
 		<view v-else class="seat-form-conent">
 			<xs-form v-model="formData" ref="form">
-				<xs-form-item title="宝宝生日" name="birthday" required>
+				<xs-form-item title="宝 宝 生 日" name="birthday" required>
 					<picker mode="date" @change="dateChange" fields="month">
 						<view class="date-picker-content">
 							<view class="input-mode">{{ formData.birthday.split('-')[0] }}</view>
@@ -24,12 +24,12 @@
 						</view>
 					</picker>
 				</xs-form-item>
-				<xs-form-item title="宝宝体重" name="weight" required type="input">
+				<xs-form-item title="宝 宝 体 重" name="weight" required type="input">
 					<view slot="rightIcon" class="rightIcon">kg(公斤)</view>
 				</xs-form-item>
-				<xs-form-item title="联系人" name="realName" type="input" required placeholder="请输入联系人"></xs-form-item>
+				<xs-form-item title="联 系 人" name="realName" type="input" required placeholder="请输入联系人"></xs-form-item>
 				<xs-form-item title="联系电话" name="phone" type="input" required placeholder="请输入手机号"></xs-form-item>
-				<xs-form-item title="预约时间 (请提前两天预约)" name="reserveDate" required></xs-form-item>
+				<xs-form-item title="预约时间 (请提前两天预约)" name="reserveDate" required className="bookingdate"></xs-form-item>
 				<picker mode="date" :value="startDate" @change="changeReserveDate" :start="startDate" :end="endDate">
 					<view class="booking-date">
 						<view class="date">{{ formData.reserveDate || '请选择日期' }}</view>
@@ -240,18 +240,24 @@ export default {
 .seat-form {
 	height: 100vh;
 	.seat-form-conent{
-		padding: 20px 20px 0 20px;
+		padding: 0px 20px 0 20px;
+		.bookingdate{
+			
+		}
 		.date-picker-content {
 			display: flex;
-		
+			font-size: 34rpx;
+			line-height: 60rpx;
 			.input-mode {
 				width: 100px;
-				height: 20px;
+				height: 60rpx;
 				background-color: #f7f7f7;
+				border-radius: 5px;
 			}
 		}
 		
 		.rightIcon {
+			font-size: 34rpx;
 			margin-left: 10px;
 		}
 		
@@ -276,6 +282,7 @@ export default {
 		.title {
 			text-align: center;
 			margin: 40px 0 30px 0;
+			font-size: 34rpx;
 		}
 		
 		.stage-content {

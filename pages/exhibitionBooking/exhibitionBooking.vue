@@ -6,7 +6,7 @@
 				<xs-form-item title="单位名称" name="company" type="input" placeholder="请输入您的单位名称"></xs-form-item>
 				<xs-form-item title="手机号码" name="phone" type="input" required placeholder="请输入您的手机号"></xs-form-item>
 				<xs-form-item title="人数" name="reserveNum" type="number" required placeholder="请输入人数"></xs-form-item>
-				<xs-form-item title="预约时间(请提前两天预约)" name="reserveDate" required></xs-form-item>
+				<xs-form-item title="预约时间(请提前两天预约)" name="reserveDate" required className="bookingdate"></xs-form-item>
 				<picker mode="date" :value="startDate" @change="dateChange" :start="startDate" :end="endDate">
 					<view class="booking-date">
 						<view class="date">{{ formData.reserveDate || '请选择日期' }}</view>
@@ -182,15 +182,9 @@ export default {
 .exhibitionBooking {
 	height: 100vh;
 	.exhibitionBooking-content{
-		padding: 20px 20px 0 20px;
+		padding: 0px 20px 0 20px;
 		.date-picker-content {
 			display: flex;
-		
-			.input-mode {
-				width: 100px;
-				height: 20px;
-				background-color: #f7f7f7;
-			}
 		}
 		
 		.rightIcon {
@@ -218,6 +212,7 @@ export default {
 		.title {
 			text-align: center;
 			margin: 40px 0 30px 0;
+			font-size: 34rpx;
 		}
 		
 		.stage-content {
