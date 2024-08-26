@@ -189,6 +189,7 @@ export default {
       flex-wrap: wrap;
       color: #030303;
       overflow: hidden;
+	  flex-wrap: nowrap;
     }
 
     .text {
@@ -210,6 +211,7 @@ export default {
 	  background-color: #f7f7f7;
 	  border-radius: 3px;
 	  height: 60rpx;
+	  padding-right: 20px;
     }
 
     .icon {

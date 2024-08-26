@@ -260,6 +260,7 @@ export default {
 		.rightIcon {
 			font-size: 34rpx;
 			margin-left: 10px;
+			flex-shrink: 0;
 		}
 		
 		.booking-date {

@@ -163,7 +163,6 @@ export default {
 		border-radius: 15px;
 		margin-bottom: 16px;
 
-		.title-content,
 		.field-content,
 		.end-content,
 		.end-content-seat {
@@ -173,6 +172,8 @@ export default {
 		}
 
 		.title-content {
+			display: flex;
+			justify-content: space-between;
 			font-size: 16px;
 			font-weight: bold;
 			line-height: 30px;
@@ -187,6 +188,7 @@ export default {
 			.value {
 				color: red;
 				text-align: right;
+				white-space: nowrap;
 			}
 		}
 

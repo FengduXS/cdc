@@ -1,13 +1,13 @@
 {
 	"pages": [
 		{
-			"path": "pages/login/login",
+			"path": "pages/home/home",
 			"style": {
 				"navigationBarTitleText": "线上展厅"
 			}
 		},
 		{
-			"path": "pages/home/home",
+			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "线上展厅"
 			}

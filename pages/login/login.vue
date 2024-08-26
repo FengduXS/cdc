@@ -4,7 +4,8 @@
 		<span class="title">欢迎进入</span>
 		<span class="title">普陀区公共卫生科普中心线上展厅</span>
 		<img src="/static/exhibitionLogo.png" alt="" class="logo" />
-		<div class="login" @click="login">登录{{ isLogin }},{{ code }},{{  fetch}},{{ error }}</div>
+		<view class="cancel" @click="cancel">取消</view>
+		<view class="login" @click="login">登录</view>
 	</view>
 </template>
 
@@ -14,21 +15,10 @@ export default {
 	data() {
 		return {
 			openId: null,
-			userInfo: null,
-			isLogin: false,
-			code:false,
-			fetch:false,
-			error:false
-		};
+			isLogin: false
+		}
 	},
 	methods: {
-		getUserInfo() {
-			wx.getUserInfo({
-				success: (res) => {
-					this.userInfo = res.userInfo
-				}
-			});
-		},
 		login() {
 			if (!this.isLogin) {
 				this.isLogin = true
@@ -36,7 +26,6 @@ export default {
 					success: (res) => {
 						this.isLogin = false
 						if (res.code) {
-							this.code = true;
 							this.fetchAccessTokenAndOpenid(res.code);
 						} else {
 							console.log('登录失败！' + res.errMsg);
@@ -52,15 +41,16 @@ export default {
 		fetchAccessTokenAndOpenid(code) {
 			post('/getOpenid', { code: code })
 				.then(response => {
-					this.fetch = true
 					this.openId = response.data.openId;
 					wx.setStorageSync('openId', this.openId);
 					uni.navigateTo({ url: '/pages/home/home' })
 				})
 				.catch(error => {
-					this.error = true
 					console.error('获取openId失败', error);
 				});
+		},
+		cancel(){
+			uni.navigateTo({ url: '/pages/home/home' })
 		}
 	}
 };
@@ -106,7 +96,27 @@ export default {
 		height: 227px;
 		margin-top: 307px;
 	}
-
+	.cancel{
+		position: absolute;
+		margin-top: 351px;
+		font-family: PingFangSC, PingFang SC;
+		font-weight: 400;
+		font-size: 14px;
+		color: #FFFFFF;
+		line-height: 20px;
+		text-align: right;
+		font-style: normal;
+		text-transform: none;
+		line-height: 42px;
+		
+		background: linear-gradient(317deg, #1BD4FF 0%, #3898FF 100%);
+		border: 1px solid #21C4FF;
+		width: calc(100% - 82px);
+		text-align: center;
+		border-radius: 20px;
+		
+		bottom: 60px;
+	}
 	.login {
 		position: absolute;
 		margin-top: 551px;
@@ -125,8 +135,7 @@ export default {
 		width: calc(100% - 82px);
 		text-align: center;
 		border-radius: 20px;
-
-		bottom: 60px;
+		
 	}
 }
 </style>

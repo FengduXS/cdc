@@ -1,6 +1,7 @@
 <template>
   <view class="container">
-    <web-view src="http://117.50.174.221/"></web-view>
+    <!-- <web-view src="http://117.50.174.221/"></web-view> -->
+    <web-view src="https://cdc.crowninfo.cn#wechat_redirect"></web-view>
   <!-- <cover-view class="share-button">
       <cover-view class="exit" @click="exitExhibition">
         退出
