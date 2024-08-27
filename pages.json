@@ -83,6 +83,10 @@
 			}
 		}
 	],
+	"networkTimeout": {  
+	    "request": 100000,  
+	    "downloadFile": 120000000  
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
