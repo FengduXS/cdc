@@ -91,6 +91,7 @@
 									content: `很抱歉，共答对${res.data.correctQuantity}道题，需要全部答对才可以领取礼品哦`,
 									confirmText: '重新答题',
 									success: function () {
+										_this.question = []
 										_this.fetchData()
 									},
 									cancel:function() {
