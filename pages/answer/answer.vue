@@ -31,6 +31,7 @@
 				item.answer = answer.detail.value
 			},
 			fetchData() {
+				this.question = []
 		      post('/question/list',{})
 		        .then(res => {
 					if(res.data && res.data.length){
@@ -78,11 +79,12 @@
 									title: '成功提交',
 									content: '恭喜你，共答对5道题，是否到现场领取礼品',
 									confirmText: '立即预约',
-									success: function () {
-										uni.navigateTo({ url: '/pages/reserveShowroom/reserveShowroom' })
-									},
-									cancel:function() {
-										uni.navigateTo({ url: '/pages/question/question' })
+									success: function (result) {
+										if(result.cancel){
+											uni.navigateTo({ url: '/pages/home/home' })
+										} else {
+											uni.navigateTo({ url: '/pages/reserveShowroom/reserveShowroom' })
+										}
 									}
 								})
 							} else {
@@ -90,12 +92,12 @@
 									title: '成功提交',
 									content: `很抱歉，共答对${res.data.correctQuantity}道题，需要全部答对才可以领取礼品哦`,
 									confirmText: '重新答题',
-									success: function () {
-										_this.question = []
-										_this.fetchData()
-									},
-									cancel:function() {
-										uni.navigateTo({ url: '/pages/question/question' })
+									success: function (result) {
+										if (result.cancel) {
+											uni.navigateTo({ url: '/pages/home/home' })
+										} else {
+											_this.fetchData()
+										}
 									}
 								})
 							}

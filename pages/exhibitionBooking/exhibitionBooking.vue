@@ -5,7 +5,7 @@
 				<xs-form-item title="称呼" name="realName" required type="input" placeholder="请输入先生或女士"></xs-form-item>
 				<xs-form-item title="单位名称" name="company" type="input" placeholder="请输入您的单位名称"></xs-form-item>
 				<xs-form-item title="手机号码" name="phone" type="input" required placeholder="请输入您的手机号"></xs-form-item>
-				<xs-form-item title="人数" name="reserveNum" type="number" required placeholder="请输入人数"></xs-form-item>
+				<xs-form-item title="人数" name="reserveNum" type="input" required placeholder="请输入人数"></xs-form-item>
 				<xs-form-item title="预约时间(请提前两天预约)" name="reserveDate" required className="bookingdate"></xs-form-item>
 				<picker mode="date" :value="startDate" @change="dateChange" :start="startDate" :end="endDate">
 					<view class="booking-date">
@@ -127,13 +127,28 @@ export default {
 				});
 				return;
 			}
+			let _this = this
 			this.$refs.form.validateFields().then(values => {
+				if (!(/^\d+$/.test(values.reserveNum)) || Number(values.reserveNum) > 20 || Number(values.reserveNum) < 1) {
+					wx.showToast({
+						title: '预约人数为数字，不超过20人',
+						icon: 'none'
+					});
+					return
+				}
+				if (!this.formData.reserveTime){
+					wx.showToast({
+						title: '时间段必选',
+						icon: 'none'
+					});
+					return
+				}
 				const openId = wx.getStorageSync('openId') ?? '';
 				let params = {
 					openId,
 					data: {
 						openId,
-						...this.formData,
+						..._this.formData,
 					}
 				}
 				post('/reserve/showroom', params)
