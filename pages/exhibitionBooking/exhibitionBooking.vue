@@ -143,6 +143,13 @@ export default {
 					});
 					return
 				}
+				if (/^1\d{10}$/.test(this.formData.phone) == false) {
+					wx.showToast({
+						title: '请填写正确的手机号',
+						icon: 'none'
+					});
+					return;
+				}
 				const openId = wx.getStorageSync('openId') ?? '';
 				let params = {
 					openId,

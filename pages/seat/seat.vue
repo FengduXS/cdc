@@ -75,7 +75,7 @@ export default {
 	},
 	data() {
 		return {
-			baseUrl: baseUrl,
+			baseUrl: 'https://cdc.crowninfo.cn/cdc-api',
 			formData: {
 				birthday: '', // 宝宝生日
 				weight: '', // 宝宝体重
@@ -164,16 +164,23 @@ export default {
 			this.$refs.form.validateFields().then(values => {
 				const openId = wx.getStorageSync('openId') ?? '';
 				this.formData.birthday= `${this.formData.birthday}-01`
+				if (/^1\d{10}$/.test(this.formData.phone) == false) {
+					wx.showToast({
+						title: '请填写正确的手机号',
+						icon: 'none'
+					});
+					return;
+				}
 				const params = {
 					openId,
 					data: this.formData
 				}
 				post('/reserve/seat', params)
 					.then(res => {
-						wx.showToast({
-							title: res.msg,
-							icon: 'none'
-						});
+						// wx.showToast({
+						// 	title: res.msg,
+						// 	icon: 'none'
+						// });
 						// if(res.code === '0'){
 						//  uni.navigateTo({ url: '/pages/seatMatching/seatMatching' })
 						// }

@@ -1,7 +1,7 @@
 <template>
   <view class="container">
     <!-- <web-view src="http://117.50.174.221/"></web-view> -->
-    <web-view src="https://cdc.crowninfo.cn"></web-view>
+    <web-view src="https://cdc.crowninfo.cn/cdcShowroom"></web-view>
   </view>
 </template>
 <style>
